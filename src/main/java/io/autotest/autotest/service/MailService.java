@@ -6,12 +6,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.io.File;
 import java.util.Properties;
 
 @Service
@@ -33,7 +36,7 @@ public class MailService {
         this.smtpPassword = smtpPassword;
     }
 
-    public void sendEmail(String from, String subject, String content, String... receivers) throws MessagingException {
+    public void sendEmail(String from, String subject, String content, File attachment, String... receivers) throws MessagingException {
 
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
@@ -54,12 +57,34 @@ public class MailService {
         Transport transport = session.getTransport();
         InternetAddress addressFrom = new InternetAddress(from);
 
+
         MimeMessage message = new MimeMessage(session);
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
         helper.setText(content, true);
         helper.setTo(receivers);
         helper.setSubject(subject);
         helper.setFrom(from);
+
+//        3) create MimeBodyPart object and set your message text
+        BodyPart messageBodyPart1 = new MimeBodyPart();
+        messageBodyPart1.setText(content);
+        messageBodyPart1.setContent(content, "text/html");
+
+        //4) create new MimeBodyPart object and set DataHandler object to this object
+        MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+
+        DataSource source = new FileDataSource(attachment);
+        messageBodyPart2.setDataHandler(new DataHandler(source));
+        messageBodyPart2.setFileName(attachment.getName());
+
+
+        //5) create Multipart object and add MimeBodyPart objects to this object
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart1);
+        multipart.addBodyPart(messageBodyPart2);
+
+        //6) set the multiplart object to the message object
+        message.setContent(multipart);
 //        message.setFrom(new InternetAddress(from));
 //        message.setSender(addressFrom);
 //        message.setSubject(subject);

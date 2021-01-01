@@ -4,5 +4,5 @@ import io.autotest.autotest.common.LaunchCampagne;
 
 public interface ICampagneMarketingService {
 
-    boolean launchCampagne(LaunchCampagne launchCampagne);
+    String launchCampagne(LaunchCampagne launchCampagne);
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
 import java.io.Serializable;
 
 @Setter
@@ -14,5 +15,6 @@ public class MailMessage implements Serializable {
     private String sender;
     private String subject;
     private String content;
+    private File attachment;
 
 }

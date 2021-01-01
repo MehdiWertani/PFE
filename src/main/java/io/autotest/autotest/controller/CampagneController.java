@@ -1,6 +1,7 @@
 package io.autotest.autotest.controller;
 
 import io.autotest.autotest.common.LaunchCampagne;
+import io.autotest.autotest.common.ResponseModel;
 import io.autotest.autotest.dao.IResultCollectionRepo;
 import io.autotest.autotest.entities.ResultCollection;
 import io.autotest.autotest.service.ICampagneMarketingService;
@@ -18,8 +19,8 @@ public class CampagneController {
 
     @PreAuthorize("hasRole('ROLE_BILLINGMANAGER')")
     @PostMapping("/launch_campagne")
-    public boolean launchCampagne(@RequestBody LaunchCampagne launchCampagne) {
-        return campganeService.launchCampagne(launchCampagne);
+    public ResponseModel launchCampagne(@RequestBody LaunchCampagne launchCampagne) {
+        return new ResponseModel(campganeService.launchCampagne(launchCampagne));
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_BILLINGMANAGER','ROLE_ADMIN','ROLE_guest')")

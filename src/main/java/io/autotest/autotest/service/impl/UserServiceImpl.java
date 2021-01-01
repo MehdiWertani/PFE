@@ -61,9 +61,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void notifyUsersByMail(MailMessage message) {
-        String[] userEmails = findUserEmails().toArray(String[]::new);
+        String[] userEmails = findUserEmails()
+                .stream()
+                .filter(mail -> mail != null && !mail.isEmpty())
+                .toArray(String[]::new);
         try {
-            mailService.sendEmail(message.getSender(), message.getSubject(), message.getContent(), userEmails);
+            mailService.sendEmail(message.getSender(), message.getSubject(), message.getContent(), message.getAttachment(), userEmails);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

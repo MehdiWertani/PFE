@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="autoTest" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20" uuid="5b5c2fd8-8de3-4d0f-a348-6a7603674947">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="headerImgUrl" class="java.lang.Object"/>
+    <parameter name="campagneName" class="java.lang.String"/>
+    <parameter name="iterationName" class="java.lang.String"/>
+    <parameter name="campId" class="java.lang.String"/>
+    <parameter name="deliveryVersion" class="java.lang.String"/>
+    <parameter name="deliveryDate" class="java.lang.String"/>
+    <parameter name="status" class="java.lang.String"/>
+    <parameter name="testDuration" class="java.lang.String"/>
+    <parameter name="rcStatus" class="java.lang.String"/>
+    <parameter name="totalSms" class="java.lang.String"/>
+    <parameter name="succSms" class="java.lang.String"/>
+    <parameter name="koSms" class="java.lang.String"/>
+    <parameter name="prepStatus" class="java.lang.String"/>
+    <parameter name="execStatus" class="java.lang.String"/>
+    <parameter name="backStatus" class="java.lang.String"/>
+    <parameter name="createdDate" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="title" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="80" splitType="Stretch">
+            <image>
+                <reportElement x="-2" y="0" width="168" height="68" uuid="16725be6-7afc-487f-a199-d14723fdd5f7"/>
+                <imageExpression><![CDATA[$P{headerImgUrl}]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="170" y="8" width="216" height="67" uuid="795fca96-4b8b-4262-b777-6b3eb3ae6119"/>
+                <textElement textAlignment="Left">
+                    <font fontName="Arial" size="21" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Report for
+Marketing Campaign:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="387" y="33" width="150" height="40" forecolor="#401DA1"
+                               uuid="61e98351-f08a-48b5-8404-f244822d0b8f"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{campagneName} != null ? $P{campagneName}  : ""]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="396" splitType="Stretch">
+            <staticText>
+                <reportElement x="1" y="0" width="110" height="19" uuid="3c9f7b77-ec35-4b40-a271-a92109916854"/>
+                <textElement textAlignment="Left">
+                    <font fontName="Arial" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Iteration details:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="0" y="21" width="110"
+                               height="36" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="6bbbf80e-d79b-4f8b-a188-e100de006ce4">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Iteration name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="110" y="21" width="120"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="8b300210-0830-465f-93b8-29b9a71b31d3">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Campaign Id]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="230" y="21" width="68"
+                               height="36" forecolor="#000000" backcolor="rgba(255, 255, 255, 0.09803922)"
+                               uuid="d1f1b0fd-30e7-4841-b046-b81fbfaf26d3">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Delivery version]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="298" y="21" width="112"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="3a39b54c-1a3d-42d8-bb07-cb295c84d844">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Delivery date]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="410" y="21" width="74"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="7cf654ac-2b58-485c-9671-1ebb5d795e4a">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="484" y="21" width="73"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="afb96de0-c9fb-4719-a647-9b899fed7ddc">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Test duration]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="57"
+                               width="110" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="e02f5a32-86ab-4d53-bf0f-155be6fa67f4">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$P{iterationName} != null  ? $P{iterationName} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="110" y="57"
+                               width="120" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="6f493756-18fa-48ea-8c4d-66f2a45d6001">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{campId} != null  ? $P{campId} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="230" y="57"
+                               width="68" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="07e66e5d-d5da-4807-a5d5-7d412b0a9f9f">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$P{deliveryVersion} != null  ? $P{deliveryVersion} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="298" y="57"
+                               width="112" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="ceee3b10-ba26-44f6-b580-74360cdf8b1c">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$P{deliveryDate} != null  ? $P{deliveryDate} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="410" y="57"
+                               width="73" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="b17d45b0-eacf-4fe9-aab7-e8c8b45593a6">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{status} != null  ? $P{status} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="483" y="57"
+                               width="74" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="73f78ed0-9435-4ab1-a49b-682755f325ac">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$P{testDuration} != null  ? $P{testDuration} : "N/A"]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="1" y="110" width="149"
+                               height="29" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="288e9550-6212-4d9e-9350-a9bee1e5f9c0">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Camapign prepartion]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="1" y="139" width="149"
+                               height="29" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="925f1284-04c5-4417-bf7c-8c7e55cab985">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Camapign execution]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="1" y="168" width="149"
+                               height="29" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="7173c452-5757-4f3c-936f-a85ec70e0851">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Camapign sent to backend]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1" y="210" width="110" height="19" uuid="65fe048c-e9e3-44a4-afd3-8e98ee9279e1"/>
+                <textElement textAlignment="Left">
+                    <font fontName="Arial" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Result collection details:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="-2" y="229" width="110"
+                               height="36" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="96f4180d-1592-4580-8a9a-1ec0ca8ea8b9">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="325" y="229" width="112"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="ff497740-4930-4a35-a29c-d8c059d6e608">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Failed SMS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-2" positionType="Float" mode="Opaque" x="228" y="229" width="97"
+                               height="36" forecolor="#000000" backcolor="rgba(255, 255, 255, 0.09803922)"
+                               uuid="66726c1f-5733-460d-a930-2236f2077467">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Succeeded SMS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="108" y="229" width="120"
+                               height="36" forecolor="#000000" backcolor="rgba(200, 206, 231, 0.0)"
+                               uuid="883eb5fc-c443-4ee3-83d7-60a57cb5e7d4">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Total SMS sent]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="-2" y="263"
+                               width="110" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="180c27c9-82fb-4b9c-9768-a8ad0b8424d4">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{rcStatus} != null  ? $P{rcStatus} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="108" y="263"
+                               width="120" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="b12cefe4-03f8-4a2c-8a52-dd36277da852">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{totalSms} != null  ? $P{totalSms} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="228" y="262"
+                               width="96" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="b0f19260-d567-4423-8771-9de886bb906b">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{succSms} != null  ? $P{succSms} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="324" y="263"
+                               width="112" height="33" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="7593c172-b0c8-4ed7-9077-8ae93f1c10ce">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{koSms} != null  ? $P{koSms} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="151" y="110"
+                               width="110" height="29" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="f523a3b7-026c-43b7-a788-1be201fddbcf">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{prepStatus} != null  ? $P{prepStatus} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="151" y="139"
+                               width="110" height="29" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="b0299cc1-a2c6-4aa1-922e-878bfab95fa2">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{execStatus} != null  ? $P{execStatus} : "N/A"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement key="textField-3" stretchType="RelativeToTallestObject" mode="Opaque" x="151" y="168"
+                               width="110" height="29" forecolor="#000000" backcolor="#FFFFFF"
+                               uuid="419e5f1c-66a7-4804-8edc-ffd972bcc827">
+                    <property name="local_mesure_unitx" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="10"/>
+                    <paragraph leftIndent="3"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{backStatus} != null  ? $P{backStatus} : "N/A"]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="55" splitType="Stretch">
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="0" y="-43" width="100"
+                               height="29" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="78599c32-209a-47b2-84f1-6ba8bff00376">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[Creation date:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="-34" width="140" height="30" forecolor="#3E3F96"
+                               uuid="69b764b0-2d69-4697-9839-834834fa9e3a"/>
+                <textFieldExpression><![CDATA[$P{createdDate} != null ? $P{createdDate} : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement key="staticText-1" positionType="Float" mode="Opaque" x="374" y="23" width="179"
+                               height="29" forecolor="#000000" backcolor="rgba(173, 183, 240, 0.0)"
+                               uuid="ccded678-19d1-4309-be2c-d948f3734699">
+                    <property name="local_mesure_unity" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+                </textElement>
+                <text><![CDATA[© 2020 Copyright: itserve.org]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>
