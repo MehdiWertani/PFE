@@ -4,10 +4,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @author houssem.bouali
- * @Date 12/31/2020
- */
 @Data
 public class ResponseModel implements Serializable {
 
