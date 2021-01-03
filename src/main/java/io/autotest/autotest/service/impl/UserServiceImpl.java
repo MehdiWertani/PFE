@@ -39,6 +39,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        iUserDao.deleteById(id);
+    }
+
+    @Override
     public User update(User user) {
         return (iUserDao.save(user));
     }

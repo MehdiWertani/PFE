@@ -15,9 +15,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -81,5 +87,42 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
             e.printStackTrace();
         }
         return "false";
+    }
+
+    @Override
+    public List<CampagneMarketing> getAll() {
+        return campagneRepo.findAll();
+    }
+
+    @Override
+    public void processFile(MultipartFile file) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            //skip header line
+            reader.readLine();
+            List<CampagneMarketing> campaigns = new ArrayList<>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split(",");
+                CampagneMarketing campaign = new CampagneMarketing();
+                campaign.setId(Long.valueOf(values[0]));
+                campaign.setName(values[1]);
+                campaign.setDescription(values[2]);
+                campaign.setDate_start(values[3]);
+                campaign.setDate_end(values[4]);
+                campaign.setCanal_type(values[5]);
+                campaign.setExecution_type(values[6]);
+                campaigns.add(campaign);
+            }
+            if (!campaigns.isEmpty()) {
+                campagneRepo.saveAll(campaigns);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        campagneRepo.deleteById(id);
     }
 }

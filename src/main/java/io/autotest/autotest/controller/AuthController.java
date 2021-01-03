@@ -96,13 +96,13 @@ public class AuthController {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "admin":
+                    case "ROLE_ADMIN":
                         Role adminRole = iRoleDao.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 
                         break;
-                    case "billing manager":
+                    case "ROLE_BILLINGMANAGER":
                         Role billingManagerRole = iRoleDao.findByName(ERole.ROLE_BILLINGMANAGER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(billingManagerRole);

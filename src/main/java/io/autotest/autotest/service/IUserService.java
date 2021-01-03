@@ -13,6 +13,8 @@ public interface IUserService {
 
     void delete(User user);
 
+    void deleteById(Long id);
+
     User update(User user);
 
     User updateRole(User user, Role role);
