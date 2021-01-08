@@ -42,6 +42,9 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
     @Autowired
     private IPreparedCampaignDao preparedCampaignDao;
 
+    @Value("${campaign-file-location}")
+    private String fileLocation;
+
 
     @Override
     public String launchCampagne(LaunchCampagne launchCampagne) {
@@ -116,7 +119,7 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
                 campaign.setDate_end(values[4]);
                 campaign.setCanal_type(values[5]);
                 campaign.setExecution_type(values[6]);
-                campaign.setSmsNumber(Long.valueOf(values[7]));
+//                campaign.setSmsNumber(Long.valueOf(values[7]));
                 campaigns.add(campaign);
             }
             if (!campaigns.isEmpty()) {
@@ -134,10 +137,19 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
 
     @Override
     public String prepareCampaign() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/campaign-test.csv");
-        try (Scanner sc = new Scanner(inputStream)) {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileLocation);
+        try (Scanner sc = new Scanner(inputStream);
+//             BufferedWriter writer = Files.newBufferedWriter(getClass().getClassLoader().getResource("static/campaign-test-copy.csv"))
+//             BufferedWriter writer = new BufferedWriter()
+             PrintWriter writer =
+                     new PrintWriter(
+                             new File(this.getClass().getClassLoader().getResource("static/campaign-test-copy.csv").getPath()))
+        ) {
+
 //            File csvFile = campaignCsvResource.getFile();
             String header = sc.nextLine();
+            writer.println(header);
+//            writer.write("\n");
             String line = sc.nextLine();
 //            String header = reader.readLine();
 //            String line = reader.readLine();
@@ -147,12 +159,19 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
             for (int i = 1; i < data.length; i++) {
                 sb.append(",").append(data[i]);
             }
-//            writer.write(header);
-//            writer.write("\n");
-//            writer.write(sb.toString());
+            writer.println(sb.toString());
+//            writer.println();
             PreparedCampaign preparedCampaign = new PreparedCampaign();
             preparedCampaign.setId(campId);
             preparedCampaign.setContent(sb.toString());
+            while (sc.hasNext()) {
+                String[] split = sc.nextLine().split(",");
+                StringBuilder cmpId = new StringBuilder(String.valueOf(System.currentTimeMillis()));
+                for (int i = 1; i < split.length; i++) {
+                    cmpId.append(",").append(split[i]);
+                }
+                writer.println(cmpId.toString());
+            }
             preparedCampaignDao.save(preparedCampaign);
             return campId;
         }
@@ -171,11 +190,11 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
         campaign.setDate_end(values[4]);
         campaign.setCanal_type(values[5]);
         campaign.setExecution_type(values[6]);
-        campaign.setSmsNumber(Long.valueOf(values[7]));
+//        campaign.setSmsNumber(Long.valueOf(values[7]));
         campagneRepo.save(campaign);
         ExecutionResponse response = new ExecutionResponse();
         response.setCampaignId(String.valueOf(id));
-        response.setSmsNumber(Long.valueOf(values[7]));
+        response.setSmsNumber(40L);
         return response;
     }
 
@@ -187,6 +206,7 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
         CampagneMarketing campagneMarketing = campagneRepo.fetchMarketingCampagne(campaignId, "", succSms, koSms);
         TestIteration byIterationName = iterationDao.findByIterationName(iterationName);
         byIterationName.setState("Finished");
+        byIterationName.setTestduration((long) random.nextInt(20));
         iterationDao.save(byIterationName);
     }
 }
