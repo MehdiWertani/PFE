@@ -22,7 +22,7 @@ public class TestIteration implements Serializable {
     private String deliveryobjectif;
     private String state;
     private Long testduration;
-    private Long campagneid;
+    private String campagneid;
 //    @OneToMany(mappedBy = "TestIterations",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 //    private Set<Test> pages;
     /*@ManyToOne(fetch = FetchType.LAZY, optional = false)

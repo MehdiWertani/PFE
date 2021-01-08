@@ -90,26 +90,26 @@ public class AuthController {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = iRoleDao.findByName(ERole.ROLE_USER)
+            Role userRole = iRoleDao.findByName(ERole.ROLE_COLLABORATOR)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "ROLE_ADMIN":
+                    case "ADMIN":
                         Role adminRole = iRoleDao.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 
                         break;
-                    case "ROLE_BILLINGMANAGER":
-                        Role billingManagerRole = iRoleDao.findByName(ERole.ROLE_BILLINGMANAGER)
+                    case "DELIVERY_MANAGER":
+                        Role billingManagerRole = iRoleDao.findByName(ERole.ROLE_DELIVERY_MANAGER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(billingManagerRole);
 
                         break;
                     default:
-                        Role userRole = iRoleDao.findByName(ERole.ROLE_USER)
+                        Role userRole = iRoleDao.findByName(ERole.ROLE_COLLABORATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
                 }

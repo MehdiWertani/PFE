@@ -2,10 +2,9 @@ package io.autotest.autotest.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Data
@@ -20,6 +19,15 @@ public class CampagneMarketing implements Serializable {
     private String date_end;
     private String canal_type;
     private String execution_type;
+    private Long smsNumber;
+    @Temporal(TemporalType.DATE)
+    private Date creationDate;
+
+    @PrePersist
+    public void initCreationDate() {
+        this.creationDate = new Date();
+    }
+
 //    @OneToMany(mappedBy = "CampagneMarketings",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 //    private Set<TestIteration> testIterations;
 }

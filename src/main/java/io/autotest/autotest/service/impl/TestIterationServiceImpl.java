@@ -12,14 +12,16 @@ import java.util.List;
 public class TestIterationServiceImpl implements ITestIterationService {
     @Autowired
     ItestIterationDao itestIterationDao;
+
     @Override
     public TestIteration save(TestIteration testIteration) {
+        testIteration.setState("Ready");
         return (itestIterationDao.save(testIteration));
     }
 
     @Override
     public void delete(TestIteration testIteration) {
-     itestIterationDao.delete(testIteration);
+        itestIterationDao.delete(testIteration);
     }
 
     @Override

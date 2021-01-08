@@ -1,29 +1,29 @@
 package io.autotest.autotest.service.impl;
 
+import io.autotest.autotest.common.ExecutionResponse;
 import io.autotest.autotest.common.LaunchCampagne;
 import io.autotest.autotest.common.MailMessage;
 import io.autotest.autotest.dao.ICampagneMarketing;
+import io.autotest.autotest.dao.IPreparedCampaignDao;
 import io.autotest.autotest.dao.IResultCollectionRepo;
 import io.autotest.autotest.dao.ItestIterationDao;
 import io.autotest.autotest.entities.CampagneMarketing;
+import io.autotest.autotest.entities.PreparedCampaign;
 import io.autotest.autotest.entities.ResultCollection;
 import io.autotest.autotest.entities.TestIteration;
-import io.autotest.autotest.security.services.JasperService;
 import io.autotest.autotest.service.ICampagneMarketingService;
 import io.autotest.autotest.service.IUserService;
+import io.autotest.autotest.service.JasperService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -37,6 +37,11 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
     private final JasperService jasperService;
     @Value("${smtp.user}")
     private String smtpUser;
+    @Autowired
+    private ResourceLoader resourceLoader;
+    @Autowired
+    private IPreparedCampaignDao preparedCampaignDao;
+
 
     @Override
     public String launchCampagne(LaunchCampagne launchCampagne) {
@@ -44,7 +49,7 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
             HashMap<String, String> reportData = new HashMap<>();
             TestIteration iteration = iterationDao.findByIterationName(launchCampagne.getIterationName());
             CampagneMarketing campagneMarketing = campagneRepo.findById(launchCampagne.getCampagneId()).orElse(null);
-            CampagneMarketing result = campagneRepo.fetchMarketingCampagne(launchCampagne.getCampagneId(), launchCampagne.getCampagneName());
+            CampagneMarketing result = campagneRepo.fetchMarketingCampagne(launchCampagne.getCampagneId(), launchCampagne.getCampagneName(), 0L, 0L);
             reportData.put("campagneName", campagneMarketing.getName());
             reportData.put("iterationName", iteration.getIterationName());
             reportData.put("campId", String.valueOf(launchCampagne.getCampagneId()));
@@ -111,6 +116,7 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
                 campaign.setDate_end(values[4]);
                 campaign.setCanal_type(values[5]);
                 campaign.setExecution_type(values[6]);
+                campaign.setSmsNumber(Long.valueOf(values[7]));
                 campaigns.add(campaign);
             }
             if (!campaigns.isEmpty()) {
@@ -124,5 +130,63 @@ public class CampagneMarketingServiceImpl implements ICampagneMarketingService {
     @Override
     public void deleteById(Long id) {
         campagneRepo.deleteById(id);
+    }
+
+    @Override
+    public String prepareCampaign() throws IOException {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/campaign-test.csv");
+        try (Scanner sc = new Scanner(inputStream)) {
+//            File csvFile = campaignCsvResource.getFile();
+            String header = sc.nextLine();
+            String line = sc.nextLine();
+//            String header = reader.readLine();
+//            String line = reader.readLine();
+            String[] data = line.split(",");
+            String campId = String.valueOf(System.currentTimeMillis());
+            StringBuilder sb = new StringBuilder(campId);
+            for (int i = 1; i < data.length; i++) {
+                sb.append(",").append(data[i]);
+            }
+//            writer.write(header);
+//            writer.write("\n");
+//            writer.write(sb.toString());
+            PreparedCampaign preparedCampaign = new PreparedCampaign();
+            preparedCampaign.setId(campId);
+            preparedCampaign.setContent(sb.toString());
+            preparedCampaignDao.save(preparedCampaign);
+            return campId;
+        }
+    }
+
+    @Override
+    public ExecutionResponse executeCampaign(Long id) {
+        Optional<PreparedCampaign> byId = preparedCampaignDao.findById(String.valueOf(id));
+        String content = byId.get().getContent();
+        String[] values = content.split(",");
+        CampagneMarketing campaign = new CampagneMarketing();
+        campaign.setId(Long.valueOf(values[0]));
+        campaign.setName(values[1]);
+        campaign.setDescription(values[2]);
+        campaign.setDate_start(values[3]);
+        campaign.setDate_end(values[4]);
+        campaign.setCanal_type(values[5]);
+        campaign.setExecution_type(values[6]);
+        campaign.setSmsNumber(Long.valueOf(values[7]));
+        campagneRepo.save(campaign);
+        ExecutionResponse response = new ExecutionResponse();
+        response.setCampaignId(String.valueOf(id));
+        response.setSmsNumber(Long.valueOf(values[7]));
+        return response;
+    }
+
+    @Override
+    public void launchCampaign(Long campaignId, Long smsNumber, String iterationName) {
+        Random random = new Random();
+        Long succSms = (long) random.nextInt(smsNumber.intValue() + 1);
+        Long koSms = smsNumber - succSms;
+        CampagneMarketing campagneMarketing = campagneRepo.fetchMarketingCampagne(campaignId, "", succSms, koSms);
+        TestIteration byIterationName = iterationDao.findByIterationName(iterationName);
+        byIterationName.setState("Finished");
+        iterationDao.save(byIterationName);
     }
 }

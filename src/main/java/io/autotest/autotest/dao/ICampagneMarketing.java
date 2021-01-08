@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ICampagneMarketing extends JpaRepository<CampagneMarketing, Long> {
 
     @Transactional
-    @Query(nativeQuery = true, value = "call launch_campagne(:campagneId, :campagneName)")
-    CampagneMarketing fetchMarketingCampagne(@Param("campagneId") Long id, @Param("campagneName") String campagneName);
+    @Query(nativeQuery = true, value = "call launch_campagne(:campagneId, :campagneName, :succSms, :koSms)")
+    CampagneMarketing fetchMarketingCampagne(@Param("campagneId") Long id,
+                                             @Param("campagneName") String campagneName,
+                                             @Param("succSms") Long succSms,
+                                             @Param("koSms") Long koSms);
 }

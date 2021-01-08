@@ -1,4 +1,4 @@
-package io.autotest.autotest.security.services;
+package io.autotest.autotest.service;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
